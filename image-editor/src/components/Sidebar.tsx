@@ -1,13 +1,13 @@
-import { useState } from "react";
+interface IStyles {
+  imageStyles : React.CSSProperties;
+  filters?: {grayScale: number , brightness: number , saturate: number , blur: number};
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+ 
+ 
+}
 
 
-const Sidebar = () => {
-
-  const [brightness , setBrightness ] = useState(30)
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setBrightness(Number(e.target.value));
-  }
+const Sidebar = ({onChange , filters}: IStyles) => {
 
   return (
     <div className="w-1/5 h-screen border-r-2 border-[#333]">
@@ -17,48 +17,49 @@ const Sidebar = () => {
       <div className=" h-[94vh] flex flex-col justify-between">
         <div className="m-6">
           <label htmlFor="file" className="font-bold">
+            Gray scale
+          </label>{" "}
+          <br />
+          <input
+          name="grayScale"
+            type="range"
+            min="1"
+            max="10"
+            value={filters?.grayScale}
+            onChange={onChange}
+            step="1"
+            className="w-11/12 mt-3 appearance-none bg-gray-500 h-3 rounded-lg outline-none"
+          />
+        </div>
+        <hr className="mx-6 bg-[#333] opacity-5" />
+        <div className="m-6">
+          <label htmlFor="file" className="font-bold">
             Brightness
           </label>{" "}
           <br />
-          <input
+          <input name="brightness"
             type="range"
-            min="1"
-            max="100"
-            value={brightness}
+            min="0"
+            max="10"
+            value={filters?.brightness}
             onChange={onChange}
-            step="1"
+            step="0.2"
             className="w-11/12 mt-3 appearance-none bg-gray-500 h-3 rounded-lg outline-none"
           />
         </div>
         <hr className="mx-6 bg-[#333] opacity-5" />
         <div className="m-6">
           <label htmlFor="file" className="font-bold">
-            Invert
+            Saturation
           </label>{" "}
           <br />
-          <input
+          <input name="saturate"
             type="range"
-            min="1"
-            max="100"
-            value={brightness}
+            min="0"
+            max="10"
+            value={filters?.saturate}
             onChange={onChange}
-            step="1"
-            className="w-11/12 mt-3 appearance-none bg-gray-500 h-3 rounded-lg outline-none"
-          />
-        </div>
-        <hr className="mx-6 bg-[#333] opacity-5" />
-        <div className="m-6">
-          <label htmlFor="file" className="font-bold">
-            Temperature
-          </label>{" "}
-          <br />
-          <input
-            type="range"
-            min="1"
-            max="100"
-            value={brightness}
-            onChange={onChange}
-            step="1"
+            step="0.5"
             className="w-11/12 mt-3 appearance-none bg-gray-500 h-3 rounded-lg outline-none"
           />
         </div>
@@ -67,14 +68,14 @@ const Sidebar = () => {
         <hr className="mx-6 bg-[#333] opacity-5" />
         <div className="m-6">
           <label htmlFor="file" className="font-bold">
-            Vibrance
+            Blur
           </label>{" "}
           <br />
-          <input
+          <input name="blur"
             type="range"
-            min="1"
+            min="0"
             max="100"
-            value={brightness}
+            value={filters?.blur}
             onChange={onChange}
             step="1"
             className="w-11/12 mt-3 appearance-none bg-gray-500 h-3 rounded-lg outline-none"
@@ -90,7 +91,7 @@ const Sidebar = () => {
             type="range"
             min="1"
             max="100"
-            value={brightness}
+            // value={brightness}
             onChange={onChange}
             step="1"
             className="w-11/12 mt-3 appearance-none bg-gray-500 h-3 rounded-lg outline-none"
@@ -106,7 +107,7 @@ const Sidebar = () => {
             type="range"
             min="1"
             max="100"
-            value={brightness}
+            // value={brightness}
             onChange={onChange}
             step="1"
             className="w-11/12 mt-3 appearance-none bg-gray-500 h-3 rounded-lg outline-none"
@@ -122,7 +123,7 @@ const Sidebar = () => {
             type="range"
             min="1"
             max="100"
-            value={brightness}
+            // value={brightness}
             onChange={onChange}
             step="1"
             className="w-11/12 mt-3 appearance-none bg-gray-500 h-3 rounded-lg outline-none"
